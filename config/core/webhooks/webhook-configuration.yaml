@@ -23,7 +23,7 @@ webhooks:
   - v1beta1
   clientConfig:
     service:
-      name: mongodb-webhook
+      name: webhook
       namespace: google-sources
   failurePolicy: Fail
   name: defaulting.webhook.sources.google.com
@@ -39,7 +39,7 @@ webhooks:
   - v1beta1
   clientConfig:
     service:
-      name: mongodb-webhook
+      name: webhook
       namespace: google-sources
   failurePolicy: Fail
   name: validation.webhook.sources.google.com
@@ -55,11 +55,7 @@ webhooks:
       - v1beta1
     clientConfig:
       service:
-        name: mongodb-webhook
-        namespace: google-sources
-    failurePolicy: Fail
     name: config.webhook.sources.google.com
-    namespaceSelector:
       matchExpressions:
         - key: sources.google.com/release
           operator: Exists
@@ -67,7 +63,7 @@ webhooks:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: google-sources-webhooks-certs
+  name: webhooks-certs
   namespace: google-sources
   labels:
     sources.google.com/release: devel
