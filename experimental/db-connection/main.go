@@ -85,7 +85,8 @@ func makeCloudEvent(data bson.M) (*cloudevents.Event, error) {
 
 func main() {
 	// Connect to the mongo replica-set
-	URI := "mongodb://10.12.0.12:27017" // Add IP:Port of main replica set pod
+	// URI := "mongodb://10.12.0.12:27017" // Add IP:Port of main replica set pod
+	URI := "mongodb://dev-test:google@10.12.0.34:27017/countries"
 	client, err := mongo.NewClient(options.Client().ApplyURI(URI))
 	if err != nil {
 		log.Fatal(err)
@@ -111,7 +112,7 @@ func main() {
 	fmt.Println(databases)
 
 	// Retrieve a specific collection
-	collection := client.Database("main-db").Collection("collection1")
+	collection := client.Database("countries").Collection("demographics")
 
 	// Watch for changes
 	// Create a wait group to be able to watch asynchronously
