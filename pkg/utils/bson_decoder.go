@@ -36,7 +36,7 @@ func DecodeChangeBson(data bson.M) (*ChangeObject, error) {
 	// Get the Collection origin of the change.
 	originInfo, found := data["ns"].(bson.M)
 	if !found {
-		return nil, errors.New("bson object does not have field about origin information: ns ")
+		return nil, errors.New("bson object does not have field about origin information: ns")
 	}
 	collection, found := originInfo["coll"].(string)
 	if !found {
