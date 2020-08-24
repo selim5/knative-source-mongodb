@@ -20,21 +20,11 @@ import (
 )
 
 var (
-	id    string = "id"
-	db    string = "db"
-	coll  string = "coll"
-	docID string = "docID"
+	id    = "id"
+	db    = "db"
+	coll  = "coll"
+	docID = "docID"
 )
-
-type BsonChangeData struct {
-	ns nsObj `bson:"ns"`
-	// _id _idObj `bson:"_id"`
-}
-
-type nsObj struct {
-	coll string `bson:"coll"`
-	db   string `bson:"db"`
-}
 
 func TestBsonDecoder(t *testing.T) {
 
@@ -51,10 +41,10 @@ func TestBsonDecoder(t *testing.T) {
 					"coll": coll,
 					"db":   db,
 				},
-				// "_id": bson.M{
-				// 	"_data":       "IDofChange",
-				// 	"clusterTime": "",
-				// },
+				"_id": bson.M{
+					"_data":       "IDofChange",
+					"clusterTime": "",
+				},
 				"documentKey": bson.M{
 					"_id": docID,
 				},
@@ -63,7 +53,6 @@ func TestBsonDecoder(t *testing.T) {
 					"key1": "value1",
 				},
 				"operationType": "insert",
-				"_id":           docID,
 			},
 			wantErr: true,
 		},
